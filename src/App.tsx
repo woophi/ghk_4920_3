@@ -49,6 +49,8 @@ const get5Tickets = () => [
   },
 ];
 
+const TICKET_PRICE = 200;
+
 export const App = () => {
   const [loading, setLoading] = useState(false);
   const [thxShow, setThx] = useState(LS.getItem(LSKeys.ShowThx, false));
@@ -65,7 +67,7 @@ export const App = () => {
     window.gtag('event', '4920_engage_var3');
     setLoading(true);
     sendDataToGA({
-      engage_price: selectedTickets.length * 200,
+      engage_price: selectedTickets.length * TICKET_PRICE,
     }).then(() => {
       LS.setItem(LSKeys.ShowThx, true);
       setThx(true);
@@ -118,7 +120,7 @@ export const App = () => {
                           width: '100%',
                         }}
                       >
-                        Выбран <span>200 ₽</span>
+                        Выбран <span>{TICKET_PRICE} ₽</span>
                       </div>
                     ) : (
                       <div
@@ -130,7 +132,7 @@ export const App = () => {
                           width: '100%',
                         }}
                       >
-                        Выбрать <span>200 ₽</span>
+                        Выбрать <span>{TICKET_PRICE} ₽</span>
                       </div>
                     )}
                   </div>
@@ -208,7 +210,7 @@ export const App = () => {
             view="primary"
             hint={
               selectedTickets.length
-                ? `${selectedTickets.length}шт ${selectedTickets.length * 200} ₽`
+                ? `${selectedTickets.length}шт ${selectedTickets.length * TICKET_PRICE} ₽`
                 : 'Выберите счастливую комбинацию чисел'
             }
             onClick={submit}
